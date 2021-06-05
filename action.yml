@@ -5,11 +5,6 @@ inputs:
   github_token:
     description: 'GITHUB_TOKEN'
     required: true
-  rubocop_version:
-    description: 'Rubocop version'
-  rubocop_extensions:
-    description: 'Rubocop extensions'
-    default: 'rubocop-rails rubocop-performance rubocop-rspec rubocop-i18n rubocop-rake'
   rubocop_flags:
     description: 'Rubocop flags. (rubocop <rubocop_flags>)'
     default: ''

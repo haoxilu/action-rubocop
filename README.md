@@ -10,6 +10,23 @@ This action runs [rubocop](https://github.com/rubocop/rubocop) with
 [reviewdog](https://github.com/reviewdog/reviewdog) on pull requests to improve
 code review experience.
 
+## Installation
+
+- Add `rubocop` to your Gemfile
+```ruby
+gem "rubocop"
+```
+
+- Add other rubocop extensions to your Gemfile (Optional)
+
+```ruby
+# Examples
+
+gem "rubocop-github", "~> 0.16.0"
+gem "rubocop-performance", require: false
+gem "rubocop-rails", require: false
+```
+
 ## Examples
 
 ### With `github-pr-check`
@@ -28,28 +45,7 @@ With `reporter: github-pr-review` a comment is added to the Pull Request Convers
 
 ### `github_token`
 
-**Required**. Must be in form of `github_token: ${{ secrets.github_token }}`'.
-
-### `rubocop_version`
-
-Optional. Set rubocop version. Possible values:
-* empty or omit: install latest version
-* `gemfile`: install version from Gemfile (`Gemfile.lock` should be presented, otherwise it will fallback to latest bundler version)
-* version (e.g. `0.90.0`): install said version
-
-### `rubocop_extensions`
-
-Optional. Set list of rubocop extensions with versions.
-
-By default install `rubocop-rails`, `rubocop-performance`, `rubocop-rspec`, `rubocop-i18n`, `rubocop-rake` with latest versions.
-Provide desired version delimited by `:` (e.g. `rubocop-rails:1.7.1`)
-
-Possible version values:
-* empty or omit (`rubocop-rails rubocop-rspec`): install latest version
-* `rubocop-rails:gemfile rubocop-rspec:gemfile`: install version from Gemfile (`Gemfile.lock` should be presented, otherwise it will fallback to latest bundler version)
-* version (e.g. `rubocop-rails:1.7.1 rubocop-rspec:2.0.0`): install said version
-
-You can combine `gemfile`, fixed and latest bundle version as you want to.
+**Required**. Must be in form of `github_token: ${{ secrets.GITHUB_TOKEN }}`'.
 
 ### `rubocop_flags`
 
@@ -106,20 +102,9 @@ jobs:
       - name: rubocop
         uses: reviewdog/action-rubocop@v1
         with:
-          rubocop_version: gemfile
-          rubocop_extensions: rubocop-rails:gemfile rubocop-rspec:gemfile
           github_token: ${{ secrets.github_token }}
           reporter: github-pr-review # Default is github-pr-check
 ```
-
-## Sponsor
-
-<p>
-  <a href="https://evrone.com/?utm_source=action-rubocop">
-    <img src="https://www.mgrachev.com/assets/static/evrone-sponsored-300.png"
-      alt="Sponsored by Evrone" width="210">
-  </a>
-</p>
 
 ## License
 
