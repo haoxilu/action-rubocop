@@ -19,14 +19,8 @@ export REVIEWDOG_GITHUB_API_TOKEN="${INPUT_GITHUB_TOKEN}"
 
 echo '::group:: Running rubocop with reviewdog 🐶 ...'
 # shellcheck disable=SC2086
-# bundle exec rubocop ${INPUT_RUBOCOP_FLAGS} \
-   reviewdog -f=rubocop \
-      -name="${INPUT_TOOL_NAME}" \
-      -reporter="${INPUT_REPORTER}" \
-      -filter-mode="${INPUT_FILTER_MODE}" \
-      -fail-on-error="${INPUT_FAIL_ON_ERROR}" \
-      -level="${INPUT_LEVEL}" \
-      ${INPUT_REVIEWDOG_FLAGS}
+bundle exec rubocop ${INPUT_RUBOCOP_FLAGS} \
+|
 
 reviewdog_rc=$?
 echo '::endgroup::'
